@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>On the many faces of matrix multiplication | Roshan homepage</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="On the many faces of matrix multiplication" />
+<meta name="author" content="rsatapat" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="It’s no exaggeration to say that our world runs on linear algebra. In fact, much of machine learning, at least the parts used most often, is essentially just a series of matrix multiplications." />
+<meta property="og:description" content="It’s no exaggeration to say that our world runs on linear algebra. In fact, much of machine learning, at least the parts used most often, is essentially just a series of matrix multiplications." />
+<link rel="canonical" href="http://localhost:4000/blogs/matrix-multiplication/" />
+<meta property="og:url" content="http://localhost:4000/blogs/matrix-multiplication/" />
+<meta property="og:site_name" content="Roshan homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-02T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="On the many faces of matrix multiplication" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rsatapat"},"dateModified":"2025-07-02T00:00:00+02:00","datePublished":"2025-07-02T00:00:00+02:00","description":"It’s no exaggeration to say that our world runs on linear algebra. In fact, much of machine learning, at least the parts used most often, is essentially just a series of matrix multiplications.","headline":"On the many faces of matrix multiplication","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blogs/matrix-multiplication/"},"url":"http://localhost:4000/blogs/matrix-multiplication/"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- add bootstrap-min locally -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <!-- for adding fonts locally -->
+  <link id="main-stylesheet" rel="stylesheet" href="/assets/css/style.css">
+  <!-- for adding fonts via cdn -->
+  <!-- <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,700&display=swap" rel="stylesheet"> --><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Roshan homepage" />
+</head>
+<body><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+<header class="site-header">
+  <div class="wrapper">
+    <!-- use this to add any page (blogs or projects) such that its easily clickable on mobile
+    <a class="site-title" rel="author" href="/">Roshan homepage</a> -->
+    <div class="socials-container"><a class="header-socials" rel="me" href="https://github.com/rsatapat" target="_blank" title="My GitHub profile" style="text-decoration: none;">
+        <span class="grey fa-brands fa-github fa-2x"></span>
+      </a><a class="header-socials" rel="me" href="https://www.linkedin.com/in/rsatapat/" target="_blank" title="My LinkedIn profile" style="text-decoration: none;">
+        <span class="grey fa-brands fa-linkedin fa-2x"></span>
+      </a></div>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon"></span>
+        </label>
+        <div class="nav-items">
+  <a class="nav-item" href="/assets/Roshan_Resume.pdf" target="_blank">cv</a>
+  <a class="nav-item " rel="author" href="/">about me</a>
+  
+  <a class="nav-item active" href="/blogs/">blogs</a>
+  
+  <a class="nav-item " href="/projects/">projects</a>
+</div>
+
+      </nav>
+
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">On the many faces of matrix multiplication</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="2025-07-02T00:00:00+02:00" itemprop="datePublished">
+        02-07-2025
+      </time>
+    </div>
+    
+      <div class="mt-3">
+        
+          <a href="/blogs-tags/Math/" class="badge bg-dark text-white me-1">Math</a>
+        
+          <a href="/blogs-tags/Data-analysis/" class="badge bg-dark text-white me-1">Data-analysis</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>It’s no exaggeration to say that our world runs on linear algebra. In fact, much of machine learning, at least the parts used most often, is essentially just a series of matrix multiplications.<br />
+If you hold these assertions to be true, then understanding matrix multiplication is essential for understanding ML, data analysis, and the world (okay, that last one might be a bit of a stretch). And yet, schools teach matrix multiplication in the worst way imaginable. It is introduced without any context or reference to its usefulness. Furthermore, the algorithm that is taught to perform matrix multiplication seems very arbitrary and unmotivated. I remember feeling absolutely bewildered by it and, being a lazy bastard, felt no inclination to remember it. Imagine my shock when I realized how intuitive and ubiquitous matrix multiplication is.</p>
+
+<p>First, we have to think of matrices in terms of rows and columns. This may sound obvious, but it’s worth remembering that the numbers inside a matrix have no meaning except as part of a row or column.<br />
+Matrix multiplication A×B is only defined if A has dimensions (m×n) and B has dimensions (n×l). In other words, the number of columns in A must equal the number of rows in B. In this case, the product matrix will have dimensions (m×l).</p>
+
+<p>With that in mind, there are 4 ways to think of matrix multiplication:</p>
+<ol>
+  <li>Row with column: Populate element by element</li>
+  <li>Columns with row: Sum of many component matrices</li>
+  <li>Columns with column: Populate column by column, scale, and then add columns</li>
+  <li>Row with row: Populate row by row, scale, and then add rows</li>
+</ol>
+
+<p>Of course, all these interpretations of matrix multiplication are mathematically equivalent. The value in knowing them is that you can choose the perspective that best fits the situation, making that particular mathematical operation clearer and more intuitive.</p>
+
+<p>All the videos in this post were created using the <a href="https://www.manim.community/">Manim library</a>, and the code can be found <a href="https://github.com/rsatapat/matrix_multiplication_viz">here</a>.</p>
+
+<h3 id="row-column-multiplication">Row-Column multiplication</h3>
+
+<p>In this view, the product matrix is filled element by element. The element at position (i, j) is the dot product (or inner product) of the i-th row of matrix A and the j-th column of matrix B. The inner product is a foundational concept in linear algebra: it is large when the two vectors point in roughly the same direction in space, and small or negative when they point in different directions. The inner product between two vectors can also be viewed as a measure of their covariance. This is why the row–column perspective of matrix multiplication connects naturally to computing a <a href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a>, which is obtained by multiplying a matrix by its transpose: A × Aᵀ.</p>
+
+<div class="row mt-3 align-items-center">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+<figure>
+  
+    <video src="/assets/video/MatrixMultiplicationDemo_rowcol.mp4" class="img-fluid rounded" width="100%" height="auto" title="example image" autoplay="" controls="">
+    </video>  
+
+  
+  
+</figure>
+
+    </div>
+</div>
+
+<h3 id="column-row-multiplication">Column-Row multiplication</h3>
+
+<p>In this view, the product matrix is seen as the sum of several component matrices. Each component matrix is formed by taking the outer product of the i-th column of matrix A with the i-th row of matrix B. Only columns and rows with the same index are paired in this way.<br />
+This column–row perspective makes the idea behind Principal Component Analysis (PCA) much easier to grasp. In PCA, the goal is to reconstruct the original data as the product of two matrices, A and B, where the number of columns in A is far smaller than the original dimensionality of the data. So, if you decide to keep 2 components, you are effectively approximating your data as the sum of two matrices.</p>
+
+<div class="row mt-3 align-items-center">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+<figure>
+  
+    <video src="/assets/video/MatrixMultiplicationDemo_colrow.mp4" class="img-fluid rounded" width="100%" height="auto" title="example image" autoplay="" controls="">
+    </video>  
+
+  
+  
+</figure>
+
+    </div>
+</div>
+
+<h3 id="column-column-multiplication">Column-Column multiplication</h3>
+
+<p>In this view, the product matrix is populated column by column. Each column of the product matrix is formed by taking a weighted sum of the columns of matrix A. For the i-th column of the product, take each column j of B, multiply it by the element B(i, j), and then add up all these scaled columns. This view is useful when your original data is in matrix A. In that case, matrix B represents an operation applied to A that scales and combines its columns.</p>
+
+<div class="row mt-3 align-items-center">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+<figure>
+  
+    <video src="/assets/video/MatrixMultiplicationDemo_colcol.mp4" class="img-fluid rounded" width="100%" height="auto" title="example image" autoplay="" controls="">
+    </video>  
+
+  
+  
+</figure>
+
+    </div>
+</div>
+
+<h3 id="row-row-multiplication">Row-Row multiplication</h3>
+
+<p>In this view, the product matrix is populated row by row. Each row of the product matrix is formed by taking a weighted sum of the rows of matrix B. For the i-th row of the product, take each row j of B, multiply it by the element A(i, j), and then add up all these scaled rows. This view is useful when your original data is in matrix B. In that case, matrix A represents an operation applied to B that scales and combines its rows.</p>
+
+<div class="row mt-3 align-items-center">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+<figure>
+  
+    <video src="/assets/video/MatrixMultiplicationDemo_rowrow.mp4" class="img-fluid rounded" width="100%" height="auto" title="example image" autoplay="" controls="">
+    </video>  
+
+  
+  
+</figure>
+
+    </div>
+</div>
+
+  </div>
+
+  <a class="u-url" href="/blogs/matrix-multiplication/" hidden></a>
+</article>
+
+      </div>
+    </main><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+<footer class="site-footer h-card">
+  <data class="u-url" value="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">rsatapat</li>
+          <li><a class="u-email" href="mailto:rsatapat@yahoo.com">rsatapat@yahoo.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+    <a rel="me" href="https://github.com/rsatapat" target="_blank" title="My GitHub profile">
+      <span class="grey fa-brands fa-github fa-lg"></span>
+    </a>
+  </li><li>
+    <a rel="me" href="https://www.linkedin.com/in/rsatapat/" target="_blank" title="My LinkedIn profile">
+      <span class="grey fa-brands fa-linkedin fa-lg"></span>
+    </a>
+  </li></ul>
+</div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>

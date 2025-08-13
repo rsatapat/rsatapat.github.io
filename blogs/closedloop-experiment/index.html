@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>On closedloop visual experiments | Roshan homepage</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="On closedloop visual experiments" />
+<meta name="author" content="rsatapat" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="For a data analyst, enormous amounts of data can be a double-edge sword. While this opens new doors for understanding the world, good data organisation skills are essential if we are to make useful insights. I encountered this challenge firsthand during my PhD." />
+<meta property="og:description" content="For a data analyst, enormous amounts of data can be a double-edge sword. While this opens new doors for understanding the world, good data organisation skills are essential if we are to make useful insights. I encountered this challenge firsthand during my PhD." />
+<link rel="canonical" href="http://localhost:4000/blogs/closedloop-experiment/" />
+<meta property="og:url" content="http://localhost:4000/blogs/closedloop-experiment/" />
+<meta property="og:site_name" content="Roshan homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-03-31T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="On closedloop visual experiments" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rsatapat"},"dateModified":"2025-03-31T00:00:00+02:00","datePublished":"2025-03-31T00:00:00+02:00","description":"For a data analyst, enormous amounts of data can be a double-edge sword. While this opens new doors for understanding the world, good data organisation skills are essential if we are to make useful insights. I encountered this challenge firsthand during my PhD.","headline":"On closedloop visual experiments","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blogs/closedloop-experiment/"},"url":"http://localhost:4000/blogs/closedloop-experiment/"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- add bootstrap-min locally -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <!-- for adding fonts locally -->
+  <link id="main-stylesheet" rel="stylesheet" href="/assets/css/style.css">
+  <!-- for adding fonts via cdn -->
+  <!-- <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,700&display=swap" rel="stylesheet"> --><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Roshan homepage" />
+</head>
+<body><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+<header class="site-header">
+  <div class="wrapper">
+    <!-- use this to add any page (blogs or projects) such that its easily clickable on mobile
+    <a class="site-title" rel="author" href="/">Roshan homepage</a> -->
+    <div class="socials-container"><a class="header-socials" rel="me" href="https://github.com/rsatapat" target="_blank" title="My GitHub profile" style="text-decoration: none;">
+        <span class="grey fa-brands fa-github fa-2x"></span>
+      </a><a class="header-socials" rel="me" href="https://www.linkedin.com/in/rsatapat/" target="_blank" title="My LinkedIn profile" style="text-decoration: none;">
+        <span class="grey fa-brands fa-linkedin fa-2x"></span>
+      </a></div>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon"></span>
+        </label>
+        <div class="nav-items">
+  <a class="nav-item" href="/assets/Roshan_Resume.pdf" target="_blank">cv</a>
+  <a class="nav-item " rel="author" href="/">about me</a>
+  
+  <a class="nav-item active" href="/blogs/">blogs</a>
+  
+  <a class="nav-item " href="/projects/">projects</a>
+</div>
+
+      </nav>
+
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">On closedloop visual experiments</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="2025-03-31T00:00:00+02:00" itemprop="datePublished">
+        31-03-2025
+      </time>
+    </div>
+    
+      <div class="mt-3">
+        
+          <a href="/blogs-tags/PhD/" class="badge bg-dark text-white me-1">PhD</a>
+        
+          <a href="/blogs-tags/Python/" class="badge bg-dark text-white me-1">Python</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>To study the visual system, I built a closed-loop behavioral setup that allowed us to present visual stimuli to a walking fruit fly and update the stimulus in real time based on the fly’s position and orientation. Stripping away the scientific context, the goal was essentially to display a pinwheel disc to the fly such that:</p>
+<ul>
+  <li>it always remains centered on the fly, and</li>
+  <li>it rotates in sync with the fly’s turns.</li>
+</ul>
+
+<p>Below is a pseudocode outline of how these closed-loop experiments were conducted.</p>
+<pre><code class="language-pseudocode">define total_trial_num
+define frames_per_trial
+
+while trial&lt;frames_per_trial
+    while frame&lt;frame_num
+        grab image from camera
+        extract location (loc) and orientaion (ori) of fly
+        define parameters of stimulus using loc and ori
+        send stimulus parameters to project
+        projector shows updated stimulus
+        save loc and ori to a csv file
+        save image to a video
+        frame=frame+1
+    trial=trial+1
+</code></pre>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">while </span><span class="p">(</span><span class="n">trials</span> <span class="o">&lt;</span> <span class="n">num_trials</span><span class="p">):</span><span class="c1"># add comment
+</span>    <span class="nf">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span><span class="c1"># add comment
+</span>        <span class="n">_</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">ori</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nf">get_fly_postion_and_orientaion</span><span class="p">()</span><span class="c1"># add comment
+</span>        <span class="n">stimulus</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">loc</span><span class="c1"># add comment
+</span>        <span class="n">stimulus</span><span class="p">.</span><span class="n">ori</span> <span class="o">=</span> <span class="n">ori</span><span class="c1"># add comment
+</span>        <span class="n">stimulus</span><span class="p">.</span><span class="nf">draw</span><span class="p">()</span> <span class="c1"># add comment
+</span>        <span class="n">win</span><span class="p">.</span><span class="nf">flip</span><span class="p">()</span> <span class="c1"># add comment
+</span>
+        <span class="k">if</span> <span class="n">frame</span><span class="o">==</span><span class="n">trial_length</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">frame</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">triala</span><span class="o">+=</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<p>There are two key aspects of this pseudocode that deserve a deeper look:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extract location (loc) and orientaion (ori) of fly
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>send stimulus parameters to project
+projector shows updated stimulus
+</code></pre></div></div>
+<h2 id="how-to-extract-a-fly">How to extract a fly</h2>
+<p>Extracting the location and orientation of the fly is surprisingly easy with OpenCV.
+First, we use <code class="language-plaintext highlighter-rouge">cv2.threshold(cv_image, 60, 255, cv2.THRESH_BINARY)</code> to binarize the image—pixels darker than 60 become black (0), and brighter pixels become white (255). The threshold value of 60 is hardcoded here, but can also be determined automatically using Otsu’s method.</p>
+
+<p>Next, we extract contours of all closed shapes in the image and apply an area filter to discard shapes that are too large or too small to be the fly. These area bounds are also hardcoded. Ideally, this step leaves us with a single contour that matches our criteria.</p>
+
+<p>Finally, we use <code class="language-plaintext highlighter-rouge">cv2.fitEllipse</code> to fit an ellipse to the selected contour. The centroid (<code class="language-plaintext highlighter-rouge">cx = int(M['m10'] / M['m00'])</code>, <code class="language-plaintext highlighter-rouge">cy = int(M['m01'] / M['m00'])</code>) and the orientation of the ellipse’s major axis give us the fly’s position and orientation.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_fly_postion_and_orientaion</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="n">image</span><span class="p">,</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">image_methods</span><span class="p">.</span><span class="nf">grab_image</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="sh">'</span><span class="s">ptgrey</span><span class="sh">'</span><span class="p">)</span> <span class="c1"># ptgrey is class/type of camera
+</span>    <span class="n">cv_image</span> <span class="o">=</span> <span class="nc">ROI</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="c1"># cut out a section of the image, can be ignored
+</span>    <span class="n">ret</span><span class="p">,</span> <span class="n">diff_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">threshold</span><span class="p">(</span><span class="n">cv_image</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span> <span class="c1"># binarise image, only the 
+</span>    <span class="n">this</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">hierarchy</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">findContours</span><span class="p">(</span><span class="n">diff_img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">RETR_LIST</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span> 
+    <span class="n">pos</span><span class="p">,</span> <span class="n">ellipse</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">=</span> <span class="nf">fly_court_pos</span><span class="p">(</span><span class="n">contours</span><span class="p">,</span> <span class="n">size_cutoff</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span>
+    <span class="n">fly_ori</span> <span class="o">=</span> <span class="n">ellipse</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">fly_ori</span><span class="p">,</span> <span class="n">timestamp</span>
+
+<span class="k">def</span> <span class="nf">fly_court_pos</span><span class="p">(</span><span class="n">contours</span><span class="p">,</span><span class="n">size_cutoff</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_size</span> <span class="o">=</span> <span class="mi">99999999</span><span class="p">):</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ellipse</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">contours</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="ow">and</span> <span class="nf">len</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">500</span><span class="p">:</span>
+            <span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">moments</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">Area</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">contourArea</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">Area</span> <span class="o">&gt;</span> <span class="n">size_cutoff</span> <span class="ow">and</span> <span class="n">Area</span> <span class="o">&lt;</span> <span class="n">max_size</span><span class="p">:</span>
+                <span class="n">cx</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="sh">'</span><span class="s">m10</span><span class="sh">'</span><span class="p">]</span> <span class="o">/</span> <span class="n">M</span><span class="p">[</span><span class="sh">'</span><span class="s">m00</span><span class="sh">'</span><span class="p">])</span>
+                <span class="n">cy</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="sh">'</span><span class="s">m01</span><span class="sh">'</span><span class="p">]</span> <span class="o">/</span> <span class="n">M</span><span class="p">[</span><span class="sh">'</span><span class="s">m00</span><span class="sh">'</span><span class="p">])</span>
+                <span class="n">pos</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">])</span>
+                <span class="n">cnt</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">ellipse</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">fitEllipse</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">pos</span><span class="p">,</span><span class="n">ellipse</span><span class="p">,</span><span class="n">cnt</span>
+</code></pre></div></div>
+
+<h2 id="how-to-make-a-fly-see-things">How to make a fly see things</h2>
+<p>Displaying visual stimuli is fairly straightforward using the PsychoPy library. The process involves three main steps:</p>
+<ul>
+  <li><strong>Define the display window</strong>: This is the frame inside which the stimulus appears. <a href="https://www.psychopy.org/api/visual/window.html#psychopy.visual.Window">We can set its size and brightness</a>. In our case, the window exactly overlaps with the arena boundaries. This alignment is crucial since the fly’s position is extracted in pixel coordinates. It must map precisely onto the display window to ensure accurate stimulus placement. There’s some nuance here, which I’ll cover in a future blog post.</li>
+  <li><strong>Define the stimulus</strong>: PsychoPy offers a <a href="https://www.psychopy.org/api/visual/">wide array of stimuli</a>. For my experiments, I used <a href="https://www.psychopy.org/api/visual/imagestim.html">ImageStim</a>, which allows displaying an image that can be moved and rotated as needed.</li>
+  <li><strong>Update and present</strong>: On every frame, the stimulus is updated, drawn onto the projector buffer, and then the window is flipped (i.e., the buffer is pushed to the screen) to present the stimulus.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">psychopy.visual</span>
+
+<span class="n">win</span> <span class="o">=</span> <span class="n">psychopy</span><span class="p">.</span><span class="n">visual</span><span class="p">.</span><span class="nc">Window</span><span class="p">(</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span>
+    <span class="n">monitor</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">fullscr</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">waitBlanking</span><span class="o">=</span><span class="bp">True</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stimulus</span> <span class="o">=</span> <span class="n">psychopy</span><span class="p">.</span><span class="n">visual</span><span class="p">.</span><span class="nc">ImageStim</span><span class="p">(</span>
+    <span class="n">win</span><span class="o">=</span><span class="n">win</span><span class="p">,</span>
+    <span class="n">image</span><span class="o">=</span><span class="n">stimulus_image</span><span class="p">,</span> <span class="c1"># path to image
+</span>    <span class="n">mask</span><span class="o">=</span><span class="sh">'</span><span class="s">circle</span><span class="sh">'</span><span class="p">,</span> <span class="c1"># clip a circle out of the image
+</span>    <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">ori</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># 0 is vertical,positive values are rotated clockwise
+</span>    <span class="n">size</span><span class="o">=</span><span class="n">stim_size</span> <span class="c1"># goes from 0 to 2 by default
+</span><span class="p">)</span>
+<span class="n">self</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">autoDraw</span> <span class="o">=</span> <span class="bp">False</span>
+</code></pre></div></div>
+<h2 id="parallelism-to-the-rescue">Parallelism to the rescue</h2>
+<p>While the above schema works, it has a major limitation: all steps (image capture, extraction of position and orientation, stimulus update, and projector refresh) run within the same loop. This means the entire process is constrained by the slowest step, which is the projector update, which is limited to 60 Hz, in our case. However, the camera can capture images at a much higher rate (upto 150Hz, in our case), and we can track the fly’s position and orientation fast enough to keep up.</p>
+
+<p>Ideally, we want to decouple image acquisition from stimulus presentation by running them in parallel processes. This allows faster image capture without being bottlenecked by projector update. This is where Python’s multipoecessing module comes to our rescue.</p>
+<pre><code class="language-pseudocode">imaging_process()
+    while trial&lt;frames_per_trial
+        while frame&lt;frame_num
+            grab image from camera
+            extract location (loc) and orientaion (ori) of fly
+            put loc,ori data into queue1
+            save loc and ori to a csv file
+            save image to a video
+            frame=frame+1
+            put frame into queue2
+        trial=trial+1
+
+stimulus_presentation_process()
+    while trial&lt;frames_per_trial
+        while frame&lt;frame_num
+            get loc,ori data from queue1
+            define parameters of stimulus using loc and ori
+            projector shows updated stimulus
+            frame=read frame from queue2
+        trial=trial+1
+
+main()
+    define multiprocessing manager
+    start manager
+
+    use manager to create LIFO (last in first out) queue1
+    use manaeger to create LIFO (last in first out) queue2
+
+    define stimulis process
+    define imaging process
+
+    start stimulus process
+    start imaging process
+</code></pre>
+
+
+  </div>
+
+  <a class="u-url" href="/blogs/closedloop-experiment/" hidden></a>
+</article>
+
+      </div>
+    </main><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+<footer class="site-footer h-card">
+  <data class="u-url" value="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">rsatapat</li>
+          <li><a class="u-email" href="mailto:rsatapat@yahoo.com">rsatapat@yahoo.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+    <a rel="me" href="https://github.com/rsatapat" target="_blank" title="My GitHub profile">
+      <span class="grey fa-brands fa-github fa-lg"></span>
+    </a>
+  </li><li>
+    <a rel="me" href="https://www.linkedin.com/in/rsatapat/" target="_blank" title="My LinkedIn profile">
+      <span class="grey fa-brands fa-linkedin fa-lg"></span>
+    </a>
+  </li></ul>
+</div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>

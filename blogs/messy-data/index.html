@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>On the messiness of data | Roshan homepage</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="On the messiness of data" />
+<meta name="author" content="rsatapat" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="For a data analyst, a large datasets can be a double-edge sword. When used properly, they can yield powerful insights and leave you with a deeper understaning of the world around you. However, in the absence of good data organisation skills, you are only left with wasted effort and confusion. I encountered this challenge firsthand during my PhD." />
+<meta property="og:description" content="For a data analyst, a large datasets can be a double-edge sword. When used properly, they can yield powerful insights and leave you with a deeper understaning of the world around you. However, in the absence of good data organisation skills, you are only left with wasted effort and confusion. I encountered this challenge firsthand during my PhD." />
+<link rel="canonical" href="http://localhost:4000/blogs/messy-data/" />
+<meta property="og:url" content="http://localhost:4000/blogs/messy-data/" />
+<meta property="og:site_name" content="Roshan homepage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-03T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="On the messiness of data" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rsatapat"},"dateModified":"2025-06-03T00:00:00+02:00","datePublished":"2025-06-03T00:00:00+02:00","description":"For a data analyst, a large datasets can be a double-edge sword. When used properly, they can yield powerful insights and leave you with a deeper understaning of the world around you. However, in the absence of good data organisation skills, you are only left with wasted effort and confusion. I encountered this challenge firsthand during my PhD.","headline":"On the messiness of data","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blogs/messy-data/"},"url":"http://localhost:4000/blogs/messy-data/"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- add bootstrap-min locally -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <!-- for adding fonts locally -->
+  <link id="main-stylesheet" rel="stylesheet" href="/assets/css/style.css">
+  <!-- for adding fonts via cdn -->
+  <!-- <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,700&display=swap" rel="stylesheet"> --><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Roshan homepage" />
+</head>
+<body><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+<header class="site-header">
+  <div class="wrapper">
+    <!-- use this to add any page (blogs or projects) such that its easily clickable on mobile
+    <a class="site-title" rel="author" href="/">Roshan homepage</a> -->
+    <div class="socials-container"><a class="header-socials" rel="me" href="https://github.com/rsatapat" target="_blank" title="My GitHub profile" style="text-decoration: none;">
+        <span class="grey fa-brands fa-github fa-2x"></span>
+      </a><a class="header-socials" rel="me" href="https://www.linkedin.com/in/rsatapat/" target="_blank" title="My LinkedIn profile" style="text-decoration: none;">
+        <span class="grey fa-brands fa-linkedin fa-2x"></span>
+      </a></div>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon"></span>
+        </label>
+        <div class="nav-items">
+  <a class="nav-item" href="/assets/Roshan_Resume.pdf" target="_blank">cv</a>
+  <a class="nav-item " rel="author" href="/">about me</a>
+  
+  <a class="nav-item active" href="/blogs/">blogs</a>
+  
+  <a class="nav-item " href="/projects/">projects</a>
+</div>
+
+      </nav>
+
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">On the messiness of data</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="2025-06-03T00:00:00+02:00" itemprop="datePublished">
+        03-06-2025
+      </time>
+    </div>
+    
+      <div class="mt-3">
+        
+          <a href="/blogs-tags/PhD/" class="badge bg-dark text-white me-1">PhD</a>
+        
+          <a href="/blogs-tags/Data-analysis/" class="badge bg-dark text-white me-1">Data-analysis</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>For a data analyst, a large datasets can be a double-edge sword. When used properly, they can yield powerful insights and leave you with a deeper understaning of the world around you. However, in the absence of good data organisation skills, you are only left with wasted effort and confusion. I encountered this challenge firsthand during my PhD.</p>
+
+<p>It took me many years to get a clear, high-level picture of data. If I had this picture when I started my PhD, I would have made different choices and could have saved siginificant amount of time. Some of the lessons that I learned through trial-and-error might be obvious to people who have been trained in data analysis or computer sciences or have been involed in data-related projects in the past. But, if you are a novice having to deal with large amounts of data, please read on.</p>
+
+<p>Before going any further, let me briefly explain the setting. I performed experiments with fruitfly that involved introducing a genetic perturbation in the fly and then, studing the effects of the perturbation on its behaviour, specifically, its ability to walk.</p>
+
+<p>I categorise the data into three types:</p>
+<ol>
+  <li>Raw data: The output of the experimental system.</li>
+  <li>Pre-processed data: The data that has undergone some preliminary cleaning to get rid of anomalies and idiosyncracies</li>
+  <li>Processed data: The final form of the data that is used for scientific analysis.</li>
+</ol>
+
+<h3 id="combining-data">Combining data</h3>
+<p>Imagine you have position (x, y) data for 10 animals, collected over 5 sessions per animal, with 5 stimulus conditions per session. There are many ways to organize this data. The simplest approach is to store each dataset in a separate file. This would result in:<br />
+2 (x and y) × 10 (animals) × 5 (sessions) × 5 (stimuli) = 500 files.<br />
+One might argue that it’s unnecessary to store x and y separately. Combining them would reduce the number of files to 250. Taking this thought to its logical conclusion, we could consolidate all the data into a single file. This would be ideal: fewer files to track, lower risk of losing or misplacing data, and a cleaner, more centralized dataset.<br />
+However, doing so requires representing the data as a 4D structure: position × animal × session × stimulus. Is that possible?</p>
+
+<h3 id="data-retrieval">Data retrieval</h3>
+<p>The main purpose of storing data if of course, to be able to retrieve it when needed. And in order to retrieve data, there has to be a way to identify it. 
+There are two ways in data is indentified and retrived from a dataset:</p>
+<ul>
+  <li>By filtering: Use some logic to reject/whittle down data till only your desired data remains</li>
+  <li>By indexing: Use an index that uniquely identifies each unit of data in the dataset<br />
+Ideally, we want a data format that makes retrieval simple and intuitive, so that anyone with access can slice and dice the dataset in whatever way they need, without requiring much additional context. The structure should be self-evident and easy to navigate.</li>
+</ul>
+
+<h3 id="metadata-and-processing">Metadata and processing</h3>
+<p>In the context of behavioural experiments that I was doing, the data was the x,y position and the head direction of the fly. The metadata was fly identity, type of genetic perturbation, and the features of the visual stimulus.<br />
+You want the data and metadata to be linked with each other as tightly as possible. In fact, ideally you want them to be part of the same file and even, of the same type.</p>
+
+<p>A critical aspect of any data format is maintaining the link between data and metadata throughout all stages of analysis. As data is processed, it often undergoes changes that require processing of the corresponding metadata.</p>
+<ul>
+  <li>Reduction: Data often gets reduced through operations like averaging. In the reduced data, certain metadata must be discarded while others retained. For example, if I average an animal’s speed across trials, the trial-level metadata is no longer relevant, but the animal ID must be preserved.</li>
+  <li>Combination: when combining data from two or more sources, their respective metadata must be merged appropriately to maintain context and traceability.</li>
+</ul>
+
+<h2 id="data-formats">Data formats</h2>
+<p>To reiterate, when choosing a data format, we want it to possess three features:</p>
+<ol>
+  <li>Easy and intuitive retrieval of data</li>
+  <li>Extension to arbitrary number of dimensions</li>
+  <li>Linkage between data and metadata to be maintained across analysis</li>
+</ol>
+
+<p><a href="https://numpy.org/">Numpy</a> arrays: Think of numpy arrays as a huge collection of numbers that are arranged in an n-dimensional cuboid.
+<a href="https://pandas.pydata.org/">Pandas</a> dataframe: This is the most powerful and widely used format for storing data, and also the easiest to visualize. If you’ve ever seen a table in Excel or any data analysis software, you’ve seen a DataFrame. One major advantage of pandas DataFrames is their ubiquity in the Python ecosystem. They integrate seamlessly with other libraries, such as Seaborn and Plotly - two powerful tools for data visualization.</p>
+
+<!-- ```python
+df.loc[[1,2], 'col1']
+array[i,j]
+``` -->
+
+<p>In NumPy arrays, each data point is accessed using a list of indices. Since these indices are just arbitrary numbers, it’s difficult to associate them with physically meaningful features.
+DataFrames offer more flexibility in this regard: columns can be labeled with names, and rows can have meaningful indices (either numbers, as in serial IDs or strings). Additionally, filtering allows you to easily select specific subsets of rows.
+This presents a classic tradeoff: NumPy arrays support arbitrary dimensions but data retrieval is difficult due to numerical indices, while DataFrames offer easier retrieval capabilities but are restricted to just two dimensions.
+The ideal dataformat would be one that combines these two features. This is where <a href="https://xarray.dev/">xarray</a> comes in. Developed by data scientists working with climate data, xarray is basically an n-dimensional dataframe. The best way to get started with xarray is of course <a href="https://tutorial.xarray.dev/intro.html">the tutorial</a> prepared and maintained by creators.</p>
+
+<p>Xarray has 3 components:</p>
+<ul>
+  <li>The data, shapes like an n-dimensional cuboid</li>
+  <li>Each dimension has a name. In our behavioural dataset, the dimensions would be <strong>Position</strong>, <strong>Animals</strong>, <strong>Sessions</strong> and <strong>Stimuli</strong></li>
+  <li>Coordinates: The values along dimensions are called coordinates. 
+dim: Timel coords: 0, 1, 2, 3…. 
+dim: Position; coords: x, y
+dim: Animals; coords: animal1, animal2, animal3……
+dim: Sessions, coords: 1, 2, 3….<br />
+Together, these components make Xarray a powerful way to work with structured multi-dimensional data. By naming dimensions and assigning meaningful coordinates, you can index, slice, and align data intuitively without having to remember raw array indices. This makes analysis more readable and less error-prone.</li>
+</ul>
+
+<p>Ah! I see so xarrays are the way to go? Well, not quite. It took me some time to realise that xarrays weren’t the answer to all my prayers after all. In my case, the dimensionality was low, the number of unique stimulus features was small enough that a pandas DataFrame was sufficient.</p>
+
+  </div>
+
+  <a class="u-url" href="/blogs/messy-data/" hidden></a>
+</article>
+
+      </div>
+    </main><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+<footer class="site-footer h-card">
+  <data class="u-url" value="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">rsatapat</li>
+          <li><a class="u-email" href="mailto:rsatapat@yahoo.com">rsatapat@yahoo.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+    <a rel="me" href="https://github.com/rsatapat" target="_blank" title="My GitHub profile">
+      <span class="grey fa-brands fa-github fa-lg"></span>
+    </a>
+  </li><li>
+    <a rel="me" href="https://www.linkedin.com/in/rsatapat/" target="_blank" title="My LinkedIn profile">
+      <span class="grey fa-brands fa-linkedin fa-lg"></span>
+    </a>
+  </li></ul>
+</div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>
