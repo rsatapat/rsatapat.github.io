@@ -88,20 +88,20 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p>It’s no exaggeration to say that our world runs on linear algebra. In fact, much of machine learning, at least the parts used most often, is essentially just a series of matrix multiplications.<br />
-If you hold these assertions to be true, then understanding matrix multiplication is essential for understanding ML, data analysis, and the world (okay, that last one might be a bit of a stretch). And yet, schools teach matrix multiplication in the worst way imaginable. It is introduced without any context or reference to its usefulness. Furthermore, the algorithm that is taught to perform matrix multiplication seems very arbitrary and unmotivated. I remember feeling absolutely bewildered by it and, being a lazy bastard, felt no inclination to remember it. Imagine my shock when I realized how intuitive and ubiquitous matrix multiplication is.</p>
+If you hold these assertions to be true, then understanding matrix multiplication is essential for understanding ML, data analysis, and the world (okay, that last one might be a bit of a stretch). And yet, schools teach matrix multiplication in the worst way imaginable. It is introduced without any context or reference to its usefulness. Furthermore, the algorithm that is taught to perform matrix multiplication seems very arbitrary and unmotivated. I remember feeling absolutely bewildered by it and, being a lazy bastard, felt no inclination to remember it. I was plesantly surprised when I realised that matrix multiplication is, in fact, very intuitive; which is great because its ubiquitous.</p>
 
-<p>First, we have to think of matrices in terms of rows and columns. This may sound obvious, but it’s worth remembering that the numbers inside a matrix have no meaning except as part of a row or column.<br />
-Matrix multiplication A×B is only defined if A has dimensions (m×n) and B has dimensions (n×l). In other words, the number of columns in A must equal the number of rows in B. In this case, the product matrix will have dimensions (m×l).</p>
+<p>First, we have to think of matrices in terms of rows and columns. This may sound obvious to many but it wasn’t to me for a very long time. In the world of intuitive matrix multiplication, the numbers inside the parent matrices—lets call them, A and B—have no meaning except as part of a row or a column.<br />
+Second, the matrix multiplication, A×B, is only defined if A has dimensions, m×n, and B has dimensions, n×l. In other words, the number of columns in A must equal the number of rows in B. In this case, the product matrix will have dimensions, m×l. m and l can take any value; they determinse the dimension of the product matrix but have no bearing on the feasibility of the matrix multiplication.</p>
 
 <p>With that in mind, there are 4 ways to think of matrix multiplication:</p>
 <ol>
-  <li>Row with column: Populate element by element</li>
-  <li>Columns with row: Sum of many component matrices</li>
-  <li>Columns with column: Populate column by column, scale, and then add columns</li>
-  <li>Row with row: Populate row by row, scale, and then add rows</li>
+  <li>Row with column: Rows of A with columns of B</li>
+  <li>Column with row: Columns of A with rows of B</li>
+  <li>Column with column: Columns of A with columns of B</li>
+  <li>Row with row: Rows of A with rows of B</li>
 </ol>
 
-<p>Of course, all these interpretations of matrix multiplication are mathematically equivalent. The value in knowing them is that you can choose the perspective that best fits the situation, making that particular mathematical operation clearer and more intuitive.</p>
+<p>Of course, all these interpretations of matrix multiplication are mathematically equivalent. The value in knowing them is that you can choose the perspective that best fits a situation, making that particular mathematical operation clearer and more intuitive.</p>
 
 <p>All the videos in this post were created using the <a href="https://www.manim.community/">Manim library</a>, and the code can be found <a href="https://github.com/rsatapat/matrix_multiplication_viz">here</a>.</p>
 
@@ -128,7 +128,7 @@ Matrix multiplication A×B is only defined if A has dimensions (m×n) and B has 
 <h3 id="column-row-multiplication">Column-Row multiplication</h3>
 
 <p>In this view, the product matrix is seen as the sum of several component matrices. Each component matrix is formed by taking the outer product of the i-th column of matrix A with the i-th row of matrix B. Only columns and rows with the same index are paired in this way.<br />
-This column–row perspective makes the idea behind Principal Component Analysis (PCA) much easier to grasp. In PCA, the goal is to reconstruct the original data as the product of two matrices, A and B, where the number of columns in A is far smaller than the original dimensionality of the data. So, if you decide to keep 2 components, you are effectively approximating your data as the sum of two matrices.</p>
+This column–row perspective makes the idea behind Principal Component Analysis (PCA) much easier to grasp. In PCA, the goal is to reconstruct the original data as the product of two matrices, A and B, where the number of columns in A is far smaller than the original dimensionality of the data. So, if you decide to keep 2 components, you are effectively approximating your data as the sum of two <a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank-1</a> matrices.</p>
 
 <div class="row mt-3 align-items-center">
     <div class="col-sm mt-3 mt-md-0">

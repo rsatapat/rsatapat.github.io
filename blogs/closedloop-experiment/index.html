@@ -8,8 +8,8 @@
 <meta property="og:title" content="On closedloop visual experiments" />
 <meta name="author" content="rsatapat" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="For a data analyst, enormous amounts of data can be a double-edge sword. While this opens new doors for understanding the world, good data organisation skills are essential if we are to make useful insights. I encountered this challenge firsthand during my PhD." />
-<meta property="og:description" content="For a data analyst, enormous amounts of data can be a double-edge sword. While this opens new doors for understanding the world, good data organisation skills are essential if we are to make useful insights. I encountered this challenge firsthand during my PhD." />
+<meta name="description" content="To study the visual system, I built a closed-loop behavioral setup that allowed us to present visual stimuli to a walking fruit fly and update the stimulus in real time based on the fly’s position and orientation. Stripping away the scientific context, the goal was essentially to display a pinwheel disc to the fly." />
+<meta property="og:description" content="To study the visual system, I built a closed-loop behavioral setup that allowed us to present visual stimuli to a walking fruit fly and update the stimulus in real time based on the fly’s position and orientation. Stripping away the scientific context, the goal was essentially to display a pinwheel disc to the fly." />
 <link rel="canonical" href="http://localhost:4000/blogs/closedloop-experiment/" />
 <meta property="og:url" content="http://localhost:4000/blogs/closedloop-experiment/" />
 <meta property="og:site_name" content="rsatapat" />
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="On closedloop visual experiments" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rsatapat","url":"rsatapat.github.io"},"dateModified":"2025-03-25T00:00:00+01:00","datePublished":"2025-03-25T00:00:00+01:00","description":"For a data analyst, enormous amounts of data can be a double-edge sword. While this opens new doors for understanding the world, good data organisation skills are essential if we are to make useful insights. I encountered this challenge firsthand during my PhD.","headline":"On closedloop visual experiments","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blogs/closedloop-experiment/"},"url":"http://localhost:4000/blogs/closedloop-experiment/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rsatapat","url":"rsatapat.github.io"},"dateModified":"2025-03-25T00:00:00+01:00","datePublished":"2025-03-25T00:00:00+01:00","description":"To study the visual system, I built a closed-loop behavioral setup that allowed us to present visual stimuli to a walking fruit fly and update the stimulus in real time based on the fly’s position and orientation. Stripping away the scientific context, the goal was essentially to display a pinwheel disc to the fly.","headline":"On closedloop visual experiments","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blogs/closedloop-experiment/"},"url":"http://localhost:4000/blogs/closedloop-experiment/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="canonical" href="https://rsatapat.github.io/" />
   <meta property="og:url" content="https://rsatapat.github.io/" />
@@ -110,26 +110,29 @@ while trial&lt;frames_per_trial
     trial=trial+1
 </code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">while </span><span class="p">(</span><span class="n">trials</span> <span class="o">&lt;</span> <span class="n">num_trials</span><span class="p">):</span><span class="c1"># add comment
-</span>    <span class="nf">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span><span class="c1"># add comment
-</span>        <span class="n">_</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">ori</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nf">get_fly_postion_and_orientaion</span><span class="p">()</span><span class="c1"># add comment
-</span>        <span class="n">stimulus</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">loc</span><span class="c1"># add comment
-</span>        <span class="n">stimulus</span><span class="p">.</span><span class="n">ori</span> <span class="o">=</span> <span class="n">ori</span><span class="c1"># add comment
-</span>        <span class="n">stimulus</span><span class="p">.</span><span class="nf">draw</span><span class="p">()</span> <span class="c1"># add comment
-</span>        <span class="n">win</span><span class="p">.</span><span class="nf">flip</span><span class="p">()</span> <span class="c1"># add comment
+<p>The corresponding python code—only the important bits—would look something like this.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">while </span><span class="p">(</span><span class="n">trials</span> <span class="o">&lt;</span> <span class="n">num_trials</span><span class="p">):</span>
+    <span class="nf">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">ori</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nf">get_fly_postion_and_orientaion</span><span class="p">()</span>
+        <span class="n">stimulus</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">loc</span> <span class="c1"># set position of stimulus
+</span>        <span class="n">stimulus</span><span class="p">.</span><span class="n">ori</span> <span class="o">=</span> <span class="n">ori</span> <span class="c1"># set orientation of stimulu
+</span>        <span class="n">stimulus</span><span class="p">.</span><span class="nf">draw</span><span class="p">()</span> <span class="c1"># draw the stimulus onto projector buffer
+</span>        <span class="n">win</span><span class="p">.</span><span class="nf">flip</span><span class="p">()</span> <span class="c1"># flip the image onto the projector
 </span>
         <span class="k">if</span> <span class="n">frame</span><span class="o">==</span><span class="n">trial_length</span><span class="p">:</span>
             <span class="k">break</span>
         <span class="n">frame</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="n">triala</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">trials</span><span class="o">+=</span><span class="mi">1</span>
 </code></pre></div></div>
 
 <p>There are two key aspects of this pseudocode that deserve a deeper look:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extract location (loc) and orientaion (ori) of fly
 </code></pre></div></div>
+<p>And</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>send stimulus parameters to project
 projector shows updated stimulus
 </code></pre></div></div>
+<p>Lets look into these two sections in some more depth.</p>
 <h2 id="how-to-extract-a-fly">How to extract a fly</h2>
 <p>Extracting the location and orientation of the fly is surprisingly easy with OpenCV.
 First, we use <code class="language-plaintext highlighter-rouge">cv2.threshold(cv_image, 60, 255, cv2.THRESH_BINARY)</code> to binarize the image—pixels darker than 60 become black (0), and brighter pixels become white (255). The threshold value of 60 is hardcoded here, but can also be determined automatically using Otsu’s method.</p>
