@@ -82,6 +82,11 @@
    data-analysis
 </a>
         
+          <a href="/blogs-tags/python/" class="badge bg-dark text-white me-1" 
+                    style="font-size: 1.1em; text-decoration: none !important;">
+   python
+</a>
+        
       </div>
     
   </header>
@@ -91,74 +96,77 @@
 
 <p>It took me many years to get a clear, high-level picture of data. If I had this picture when I started my PhD, I would have made different choices and could have saved siginificant amount of time. Some of the lessons that I learned through trial-and-error might be obvious to people who have been trained in data analysis or computer sciences or have been involed in data-related projects in the past. But, if you are a novice having to deal with large amounts of data, please read on.</p>
 
-<p>Before going any further, let me briefly explain the setting. I performed experiments with fruitfly that involved introducing a genetic perturbation in the fly and then, studing the effects of the perturbation on its behaviour, specifically, its ability to walk.</p>
+<p>Before going any further, let me briefly explain the setting. I performed experiments with fruitfly that involved introducing a genetic perturbation in the fly and then, studying the effects of the perturbation on its behaviour, specifically, its ability to walk.</p>
 
-<p>I categorise the data into three types:</p>
-<ol>
-  <li>Raw data: The output of the experimental system.</li>
-  <li>Pre-processed data: The data that has undergone some preliminary cleaning to get rid of anomalies and idiosyncracies</li>
-  <li>Processed data: The final form of the data that is used for scientific analysis.</li>
-</ol>
+<p>Finally, I used Python for most of my research and still use it for all my personal projects. Moreover, with the widespread adoption of Machine Learning, python has been somewhat of a de facto programming language, unless you have very specific reasons for using another programming language. All this is to make the point that although the reasoning used in this post is universal, the recommendations limited to data formats that are used in Python.</p>
 
 <h3 id="combining-data">Combining data</h3>
 <p>Imagine you have position (x, y) data for 10 animals, collected over 5 sessions per animal, with 5 stimulus conditions per session. There are many ways to organize this data. The simplest approach is to store each dataset in a separate file. This would result in:<br />
-2 (x and y) × 10 (animals) × 5 (sessions) × 5 (stimuli) = 500 files.<br />
-One might argue that it’s unnecessary to store x and y separately. Combining them would reduce the number of files to 250. Taking this thought to its logical conclusion, we could consolidate all the data into a single file. This would be ideal: fewer files to track, lower risk of losing or misplacing data, and a cleaner, more centralized dataset.<br />
-However, doing so requires representing the data as a 4D structure: position × animal × session × stimulus. Is that possible?</p>
+2 (x and y) × 10 (animals) × 5 (sessions) × 5 (stimuli) = 500 files.</p>
+
+<p>One might argue that it’s unnecessary to store x and y separately. Combining them would reduce the number of files to 250. What if we take this thought to its logical conclusion; we could consolidate all the data into a single file. This would be ideal: fewer files to track, lower risk of losing or misplacing data, and a cleaner, more centralized dataset.<br />
+However, doing so requires representing the data as a 4D structure: position × animal × session × stimulus. Is that possible? Lets keep this in mind while we move onto another important factor that needs to be considered when selecting a data format.</p>
 
 <h3 id="data-retrieval">Data retrieval</h3>
-<p>The main purpose of storing data if of course, to be able to retrieve it when needed. And in order to retrieve data, there has to be a way to identify it. 
+<p>The main purpose of storing data is of course, to be able to retrieve it when needed. And in order to retrieve data, there has to be a way to identify it. 
 There are two ways in data is indentified and retrived from a dataset:</p>
 <ul>
   <li>By filtering: Use some logic to reject/whittle down data till only your desired data remains</li>
-  <li>By indexing: Use an index that uniquely identifies each unit of data in the dataset<br />
-Ideally, we want a data format that makes retrieval simple and intuitive, so that anyone with access can slice and dice the dataset in whatever way they need, without requiring much additional context. The structure should be self-evident and easy to navigate.</li>
+  <li>By indexing: Use an index that uniquely identifies each unit of data in the dataset</li>
 </ul>
 
-<h3 id="metadata-and-processing">Metadata and processing</h3>
-<p>In the context of behavioural experiments that I was doing, the data was the x,y position and the head direction of the fly. The metadata was fly identity, type of genetic perturbation, and the features of the visual stimulus.<br />
-You want the data and metadata to be linked with each other as tightly as possible. In fact, ideally you want them to be part of the same file and even, of the same type.</p>
+<p>Ideally, we want a data format that makes retrieval simple and intuitive, so that anyone with access can slice and dice the dataset in whatever way they need, without requiring much additional context. The structure should be self-evident and easy to navigate.</p>
 
-<p>A critical aspect of any data format is maintaining the link between data and metadata throughout all stages of analysis. As data is processed, it often undergoes changes that require processing of the corresponding metadata.</p>
+<h3 id="metadata-and-processing">Metadata and processing</h3>
+<p>Metadata, as the name suggest, refers to the data about data. In the context of the behavioural experiments that I described earlier, the real-data was the x,y position and the head direction of the fly; while the meta-data were things like fly identity, type of genetic perturbation, features of the visual stimulus etc.</p>
+
+<p>You want the data and metadata to be linked with each other as tightly as possible. In fact, ideally you want them to be part of the same file and even, of the same type. A good data format should maintain the link between data and metadata throughout all stages of analysis. What do I mean by that? As data is processed, it often undergoes changes that require processing of the corresponding metadata:</p>
 <ul>
   <li>Reduction: Data often gets reduced through operations like averaging. In the reduced data, certain metadata must be discarded while others retained. For example, if I average an animal’s speed across trials, the trial-level metadata is no longer relevant, but the animal ID must be preserved.</li>
   <li>Combination: when combining data from two or more sources, their respective metadata must be merged appropriately to maintain context and traceability.</li>
 </ul>
 
+<p>A good data format then, ensures that the real-data “remembers” the meta-data as it is reduced and combined through successive steps of processing.</p>
+
 <h2 id="data-formats">Data formats</h2>
-<p>To reiterate, when choosing a data format, we want it to possess three features:</p>
+<p>To summarise—when choosing a data format, we want it to possess three features:</p>
 <ol>
   <li>Easy and intuitive retrieval of data</li>
   <li>Extension to arbitrary number of dimensions</li>
   <li>Linkage between data and metadata to be maintained across analysis</li>
 </ol>
 
-<p><a href="https://numpy.org/">Numpy</a> arrays: Think of numpy arrays as a huge collection of numbers that are arranged in an n-dimensional cuboid.
-<a href="https://pandas.pydata.org/">Pandas</a> dataframe: This is the most powerful and widely used format for storing data, and also the easiest to visualize. If you’ve ever seen a table in Excel or any data analysis software, you’ve seen a DataFrame. One major advantage of pandas DataFrames is their ubiquity in the Python ecosystem. They integrate seamlessly with other libraries, such as Seaborn and Plotly - two powerful tools for data visualization.</p>
+<p>What options do we have in Python?</p>
+
+<p><a href="https://numpy.org/">Numpy</a> arrays: Think of numpy arrays as a huge collection of numbers that are arranged in an n-dimensional cuboid.</p>
+
+<p><a href="https://pandas.pydata.org/">Pandas</a> dataframe: This is the most powerful and widely used format for storing data, and also the easiest to visualize. If you’ve ever seen a table in Excel or any data analysis software, you’ve seen a DataFrame. One major advantage of pandas DataFrames is their ubiquity in the Python ecosystem. They integrate seamlessly with other libraries, such as Seaborn and Plotly—two powerful tools for data visualization.</p>
 
 <!-- ```python
 df.loc[[1,2], 'col1']
 array[i,j]
 ``` -->
 
-<p>In NumPy arrays, each data point is accessed using a list of indices. Since these indices are just arbitrary numbers, it’s difficult to associate them with physically meaningful features.
-DataFrames offer more flexibility in this regard: columns can be labeled with names, and rows can have meaningful indices (either numbers, as in serial IDs or strings). Additionally, filtering allows you to easily select specific subsets of rows.
-This presents a classic tradeoff: NumPy arrays support arbitrary dimensions but data retrieval is difficult due to numerical indices, while DataFrames offer easier retrieval capabilities but are restricted to just two dimensions.
-The ideal dataformat would be one that combines these two features. This is where <a href="https://xarray.dev/">xarray</a> comes in. Developed by data scientists working with climate data, xarray is basically an n-dimensional dataframe. The best way to get started with xarray is of course <a href="https://tutorial.xarray.dev/intro.html">the tutorial</a> prepared and maintained by creators.</p>
+<p>In NumPy arrays, each data point is accessed using a list of indices. Since these indices are just arbitrary numbers, it’s difficult to associate them with physically meaningful features.<br />
+DataFrames offer more flexibility in this regard: columns can be labeled with names, and rows can have meaningful indices (either numbers, as in serial IDs or strings). Additionally, filtering allows you to easily select specific subsets of rows.</p>
+
+<p>This presents a tradeoff: NumPy arrays support arbitrary dimensions but data retrieval is difficult due to numerical indices; DataFrames offer easier retrieval capabilities but are restricted to just two dimensions.
+The ideal dataformat would be one that combines these two features.<br />
+This is where <a href="https://xarray.dev/">xarray</a> comes in. Developed by data scientists working with geological data, xarray is basically an n-dimensional dataframe. The best way to get started with xarray is of course <a href="https://tutorial.xarray.dev/intro.html">the tutorial</a>, prepared and maintained by creators. Nonetheless, I will briefly explain the defining features of xarray and how it fits into the ideas presented above.</p>
 
 <p>Xarray has 3 components:</p>
-<ul>
-  <li>The data, shapes like an n-dimensional cuboid</li>
-  <li>Each dimension has a name. In our behavioural dataset, the dimensions would be <strong>Position</strong>, <strong>Animals</strong>, <strong>Sessions</strong> and <strong>Stimuli</strong></li>
-  <li>Coordinates: The values along dimensions are called coordinates. 
+<ol>
+  <li><strong>The data</strong>, shapes like an n-dimensional cuboid</li>
+  <li>Each <strong>dimension</strong> has a name. In our behavioural dataset, the dimensions would be <em>Position</em>, <em>Animals</em>, <em>Sessions</em> and <em>Stimuli</em></li>
+  <li><strong>Coordinates</strong>: The values along dimensions are called coordinates. 
 dim: Timel coords: 0, 1, 2, 3…. 
 dim: Position; coords: x, y
 dim: Animals; coords: animal1, animal2, animal3……
 dim: Sessions, coords: 1, 2, 3….<br />
 Together, these components make Xarray a powerful way to work with structured multi-dimensional data. By naming dimensions and assigning meaningful coordinates, you can index, slice, and align data intuitively without having to remember raw array indices. This makes analysis more readable and less error-prone.</li>
-</ul>
+</ol>
 
-<p>Ah! I see so xarrays are the way to go? Well, not quite. It took me some time to realise that xarrays weren’t the answer to all my prayers after all. In my case, the dimensionality was low, the number of unique stimulus features was small enough that a pandas DataFrame was sufficient.</p>
+<p>Ah! I see so xarrays are the way to go? Well, yes, but not always. In my own case, it took me some time to realise that xarrays weren’t the answer to all my prayers after all. In my case, the dimensionality was low, the number of unique stimulus features was small enough that a pandas DataFrame might have been sufficient. I still don’t regret using xarray because it has some very nice features like in-built methods for plotting data that made life much easier but, if I had read this blog post before I started my PhD, then, I might have stuck with pandas.</p>
 
   </div>
 
