@@ -8,8 +8,8 @@
 <meta property="og:title" content="My PhD project" />
 <meta name="author" content="rsatapat" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="For my PhD, I studied how the invertebrate visual system guides locomotion. In simpler terms, I studied how fruit flies see and walk. Yes, I am aware of the irony." />
-<meta property="og:description" content="For my PhD, I studied how the invertebrate visual system guides locomotion. In simpler terms, I studied how fruit flies see and walk. Yes, I am aware of the irony." />
+<meta name="description" content="For my PhD, I studied how the invertebrate visual system guides locomotion; in simpler terms, how do fruit flies see and walk. Yes, I am aware of the irony of studying how fruit”flies” walk." />
+<meta property="og:description" content="For my PhD, I studied how the invertebrate visual system guides locomotion; in simpler terms, how do fruit flies see and walk. Yes, I am aware of the irony of studying how fruit”flies” walk." />
 <link rel="canonical" href="http://localhost:4000/blogs/Phd-blog/" />
 <meta property="og:url" content="http://localhost:4000/blogs/Phd-blog/" />
 <meta property="og:site_name" content="rsatapat" />
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="My PhD project" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rsatapat","url":"rsatapat.github.io"},"dateModified":"2025-03-30T00:00:00+01:00","datePublished":"2025-03-30T00:00:00+01:00","description":"For my PhD, I studied how the invertebrate visual system guides locomotion. In simpler terms, I studied how fruit flies see and walk. Yes, I am aware of the irony.","headline":"My PhD project","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blogs/Phd-blog/"},"url":"http://localhost:4000/blogs/Phd-blog/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rsatapat","url":"rsatapat.github.io"},"dateModified":"2025-03-30T00:00:00+01:00","datePublished":"2025-03-30T00:00:00+01:00","description":"For my PhD, I studied how the invertebrate visual system guides locomotion; in simpler terms, how do fruit flies see and walk. Yes, I am aware of the irony of studying how fruit”flies” walk.","headline":"My PhD project","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blogs/Phd-blog/"},"url":"http://localhost:4000/blogs/Phd-blog/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="canonical" href="https://rsatapat.github.io/" />
   <meta property="og:url" content="https://rsatapat.github.io/" />
@@ -85,14 +85,15 @@
     <p><strong><em>Title of thesis: Mechanisms of visual integration and competition in innate behaviours in Drosophila melanogaster</em></strong></p>
 
 <h3 id="the-background">The background</h3>
-<p>For my PhD, I studied how the invertebrate visual system guides locomotion. In simpler terms, I studied how fruit flies (<a href="https://en.wikipedia.org/wiki/Drosophila_melanogaster"><em>Drosophila melanogaster</em></a>) see and walk (yes, I’m aware of the irony). As the title of my thesis suggests, I focused on how the fly’s brain assimilates visual stimuli (via integration or competition) to generate appropriate movement. Though I used fruit flies as a model, the underlying problem: how animals reconcile conflicting sensory inputs, is universal.</p>
+<p>For my PhD, I studied how the invertebrate visual system guides locomotion; in simpler terms, how do fruit flies (<a href="https://en.wikipedia.org/wiki/Drosophila_melanogaster"><em>Drosophila melanogaster</em></a>) see and walk. It might sound a bit strange to study how flies walk. Despite their name and their ability to execute impressive aerial maneuvers, fruit fles spend a surprising amount of their time not flying and perform a host of very interesting and complex behaviours while walking; so, its not as strange as it might seem at first glance.<br />
+As the title of my thesis suggests, I focused on how the fly’s brain assimilates visual stimuli—via integration or competition—to generate appropriate movement. Though I used fruit flies as a model, the underlying problem—how do animals make sense of the myriad stimuli that they encounter at every moment—is universal and one that must be solved by all animals, including human beings.</p>
 
 <p>My PhD involved two main projects addressing complementary aspects of perception:</p>
 <ol>
   <li>Integration: How are visual stimuli from both halves of the visual field combined/integrated to produce appropriate behaviour?<br />
-For my thesis, visual stimuli = motion cues and appropriate behaviour = optomotor response.</li>
+In the context of my PhD, visual stimuli = motion cues and appropriate behaviour = optomotor response.</li>
   <li>Competition: How does a fly, engaged in a visual task, respond when shown another distracting visual stimulus?<br />
-For my thesis, “visual task” = “visual tracking of female by male fly during courtship” and “distrating visual stimulus” = “a visual stimulus that triggers the optomotor response”.</li>
+In my PhD, visual task = visual tracking of female by male fly during courtship and distrating visual stimulus = a visual stimulus that triggers the optomotor response.</li>
 </ol>
 
 <h2 id="methods">Methods</h2>
@@ -187,7 +188,7 @@ while trial&lt;frames_per_trial
         frame=frame+1
     trial=trial+1
 </code></pre>
-<p>Each loop to  correspondeds to one frame of the video</p>
+<p>Each loop to correspondeds to one frame of the video. For a more in-depth explanation of the python script used for running the exeriments, you can go <a href="/blogs/closedloop-experiment">here</a></p>
 
 <h2 id="data">Data</h2>
 <p>Each experimental session was divided into multiple trials with randomized stimulus parameters. The raw output included:</p>
@@ -198,7 +199,7 @@ while trial&lt;frames_per_trial
 For preprocessing, data from the CSV and JSON files were merged into 2D NumPy arrays, with each row representing a trial and each column a video frame. These numpy arrays were then used for further analysis.</li>
 </ul>
 
-<p>To know more about the details of the data formats that I used and my thoughts regarding data please go <a href="link to blog post">here</a></p>
+<p>To know more about the details of the data formats that I used and my thoughts regarding data please go <a href="/blogs/messy-data">here</a></p>
 
 <h3 id="optomotor-response-in-walking-fruitflies">Optomotor response in walking fruitflies</h3>
 <p>While walking in a straight line might seem trivial, it is anything but. Constant adjustments are required to maintain a straight trajectory. And constant feedback, in the form of visual cues, is needed to perform these adjustments. Visual cues help us judge our motion and make the necessary corrections in real time. This process has been studied extensively in insects, particularly in fruit flies, through a behavior known as the optomotor response. When an insect is exposed to global rotational motion, it begins to turn in the direction of that motion. This happens because the visual system is tricked into interpreting external motion as self-motion. In response, the fly turns to cancel out the perceived motion and thereby maintain a straight path.</p>
